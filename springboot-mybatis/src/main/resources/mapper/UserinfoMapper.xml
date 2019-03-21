@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pepsi.dao.UserinfoMapper">
+	<!--  -->
+    <resultMap id="userinfoBaseMap" type="com.pepsi.pojo.Userinfo">
+         <!-- 主键 -->
+        <result property="id" column="id"/>
+         <!-- 注册人手机号 -->
+        <result property="mobileNoInternet" column="mobile_no_internet"/>
+         <!--  -->
+        <result property="mobileNoInternetEncry" column="mobile_no_internet_encry"/>
+         <!-- 联系人手机号 -->
+        <result property="mobileTel" column="mobile_tel"/>
+         <!-- 多金客户编号 -->
+        <result property="custNo" column="cust_no"/>
+         <!-- 统一客户编号 -->
+        <result property="customerNo" column="customer_no"/>
+         <!-- 创建时间 -->
+        <result property="createDate" column="create_date"/>
+         <!-- 客户类型(默认个人 1) -->
+        <result property="custType" column="cust_type"/>
+         <!-- 电子邮箱 -->
+        <result property="email" column="e_mail"/>
+         <!-- 地址 -->
+        <result property="address" column="address"/>
+         <!-- 证件类型 -->
+        <result property="idKindGb" column="id_kind_gb"/>
+         <!-- 证件号码 -->
+        <result property="idNo" column="id_no"/>
+         <!-- 密码 -->
+        <result property="password" column="password"/>
+         <!-- 客服风险等级 -->
+        <result property="riskLevel" column="risk_level"/>
+         <!-- 客户姓名 -->
+        <result property="name" column="name"/>
+         <!-- 插入时间 -->
+        <result property="inserttime" column="inserttime"/>
+         <!-- 更新时间 -->
+        <result property="updatetime" column="updatetime"/>
+         <!-- 备注 -->
+        <result property="remark" column="remark"/>
+         <!-- 客户端来源 -->
+        <result property="clientFrom" column="client_from"/>
+         <!-- 渠道 -->
+        <result property="sourceFrom" column="source_from"/>
+         <!-- 地区/部门 -->
+        <result property="areaInfo" column="area_info"/>
+		<!-- 创建人名称 -->
+        <result property="createName" column="create_name"/>
+        <!-- 修改人名称 -->
+        <result property="updateName" column="update_name"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="userinfoColumns">
+	    <![CDATA[
+        id ,mobile_no_internet ,mobile_no_internet_encry ,mobile_tel ,cust_no ,customer_no ,create_date ,cust_type ,e_mail ,address ,id_kind_gb ,id_no ,password ,risk_level ,name ,inserttime ,updatetime ,remark ,client_from ,source_from ,area_info 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterType="com.pepsi.pojo.Userinfo" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO t_userinfo (
+        	id ,
+        	mobile_no_internet ,
+        	mobile_no_internet_encry ,
+        	mobile_tel ,
+        	cust_no ,
+        	customer_no ,
+        	create_date ,
+        	cust_type ,
+        	e_mail ,
+        	address ,
+        	id_kind_gb ,
+        	id_no ,
+        	password ,
+        	risk_level ,
+        	name ,
+        	inserttime ,
+        	updatetime ,
+        	remark ,
+        	client_from ,
+        	source_from ,
+        	area_info 
+        ) VALUES (
+        	#{id} ,
+        	#{mobileNoInternet} ,
+        	#{mobileNoInternetEncry} ,
+        	#{mobileTel} ,
+        	#{custNo} ,
+        	#{customerNo} ,
+        	#{createDate} ,
+        	#{custType} ,
+        	#{email} ,
+        	#{address} ,
+        	#{idKindGb} ,
+        	#{idNo} ,
+        	#{password} ,
+        	#{riskLevel} ,
+        	#{name} ,
+        	#{inserttime} ,
+        	#{updatetime} ,
+        	#{remark} ,
+        	#{clientFrom} ,
+        	#{sourceFrom} ,
+        	#{areaInfo} 
+        )
+    ]]>
+    </insert>
+    
+	<!--更新记录  -->
+    <update id="update" parameterType="com.pepsi.pojo.Userinfo">
+        UPDATE t_userinfo 
+        <set>
+	        	<if test="mobileNoInternet != null and mobileNoInternet != ''">	
+	        		mobile_no_internet = #{mobileNoInternet} ,
+	        	</if>
+	        	<if test="mobileNoInternetEncry != null and mobileNoInternetEncry != ''">	
+	        		mobile_no_internet_encry = #{mobileNoInternetEncry} ,
+	        	</if>
+	        	<if test="mobileTel != null and mobileTel != ''">	
+	        		mobile_tel = #{mobileTel} ,
+	        	</if>
+	        	<if test="custNo != null and custNo != ''">	
+	        		cust_no = #{custNo} ,
+	        	</if>
+	        	<if test="customerNo != null and customerNo != ''">	
+	        		customer_no = #{customerNo} ,
+	        	</if>
+	        	<if test="createDate != null and createDate != ''">	
+	        		create_date = #{createDate} ,
+	        	</if>
+	        	<if test="custType != null and custType != ''">	
+	        		cust_type = #{custType} ,
+	        	</if>
+	        	<if test="email != null and email != ''">	
+	        		e_mail = #{email} ,
+	        	</if>
+	        	<if test="address != null and address != ''">	
+	        		address = #{address} ,
+	        	</if>
+	        	<if test="idKindGb != null and idKindGb != ''">	
+	        		id_kind_gb = #{idKindGb} ,
+	        	</if>
+	        	<if test="idNo != null and idNo != ''">	
+	        		id_no = #{idNo} ,
+	        	</if>
+	        	<if test="password != null and password != ''">	
+	        		password = #{password} ,
+	        	</if>
+	        	<if test="riskLevel != null and riskLevel != ''">	
+	        		risk_level = #{riskLevel} ,
+	        	</if>
+	        	<if test="name != null and name != ''">	
+	        		name = #{name} ,
+	        	</if>
+	        	<if test="inserttime != null and inserttime != ''">	
+	        		inserttime = #{inserttime} ,
+	        	</if>
+	        	<if test="updatetime != null and updatetime != ''">	
+	        		updatetime = #{updatetime} ,
+	        	</if>
+	        	<if test="remark != null and remark != ''">	
+	        		remark = #{remark} ,
+	        	</if>
+	        	<if test="clientFrom != null and clientFrom != ''">	
+	        		client_from = #{clientFrom} ,
+	        	</if>
+	        	<if test="sourceFrom != null and sourceFrom != ''">	
+	        		source_from = #{sourceFrom} ,
+	        	</if>
+	        	<if test="areaInfo != null and areaInfo != ''">	
+	        		area_info = #{areaInfo} 
+	        	</if>
+	    </set>
+        WHERE 
+	        	id = #{ id} 
+    </update>
+	<!--删除记录  -->
+    <delete id="delete" >
+        DELETE FROM t_userinfo 
+        WHERE id =#{id}
+    </delete>
+    
+     <!-- 删除多条记录 -->
+    <delete id="deletes" >
+		  DELETE FROM t_userinfo 
+		  WHERE id in
+			<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+		 	  #{item}
+			</foreach>
+	</delete>
+    
+    <!-- 分页查询 -->
+   <select id="findUserinfoListByPage" parameterType="java.util.Map" resultMap="userinfoBaseMap">
+		select 
+    	  t.id , t.mobile_no_internet , t.mobile_no_internet_encry , t.mobile_tel , t.cust_no , t.customer_no , t.create_date , t.cust_type , t.e_mail , t.address , t.id_kind_gb , t.id_no , t.password , t.risk_level , t.name , t.inserttime , t.updatetime , t.remark , t.client_from , t.source_from , t.area_info 
+    	 ,uc.username create_name, up.username update_name
+    	from  t_userinfo t
+    	LEFT JOIN t_user uc ON uc.id = t.create_id
+		LEFT JOIN t_user up ON up.id = t.update_id
+	</select>
+	
+	<!-- 通过id查询 -->
+	<select id="findUserinfoById" resultMap="userinfoBaseMap">
+		select <include refid="userinfoColumns"/>  
+		from t_userinfo  t where t.id=#{id};
+	</select>
+	
+	<!-- 通过ID、状态进行查询 -->
+	<select id="findUserinfoByIdAndStatus" parameterType="java.util.Map" resultMap="userinfoBaseMap">
+		select 
+			<include refid="userinfoColumns"/>  
+		from t_userinfo 
+		<where> 
+        	<if test="id != null and id != '' ">	
+        		id = #{id}
+        	</if>
+        	<if test="enables != null and enables != '' ">	
+        		and enables = #{enables}
+        	</if>
+		</where>
+	</select>
+	
+    <!-- 同时修改多条记录状态 -->
+       <update id="updateEnables" >
+        UPDATE t_userinfo  
+        <set>
+            update_time = now()
+            ,enables = #{enables}
+        	<if test="updateId != null and updateId != '' ">
+        		,update_id = #{updateId}
+        	</if>
+	    </set>
+        WHERE id in
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+	 	  #{item}
+		</foreach>
+    </update>
+</mapper>
